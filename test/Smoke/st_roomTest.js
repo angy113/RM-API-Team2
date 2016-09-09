@@ -13,8 +13,8 @@ describe("Smoke: Rooms - Feature", function(){
 
     before(function(done){
         request.authentication.postLogin(function(err, res){
-            dbQuery.preCondition.findAllRooms(function(res){
-                    roomId = res[0]._id;
+            dbQuery.preCondition.getRandomRoom(function(res){
+                    roomId = res._id;
                     request.authentication.postLogin(function(err, res){
                         dbQuery.preCondition.findAllServices(function(res){
                             serviceId = res[0]._id;

@@ -69,7 +69,7 @@ describe("CRUD: methods for API-Room", function(){
         dbQuery.preCondition.findAllRoomsOfOneService(serviceId,function(res){
             var roomServiceId = res[0]._id;
             var roomServiceName = res[0].customDisplayName;
-            request.room.getRoomByService(serviceId, room._id, function(err, res){
+            request.room.getRoomByService(serviceId, roomServiceId, function(err, res){
                 expect(res.body._id).to.equal(roomServiceId.toString());
                 expect(res.body.customDisplayName).to.equal(roomServiceName);
                 done();
