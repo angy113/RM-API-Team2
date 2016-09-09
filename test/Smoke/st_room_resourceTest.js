@@ -19,8 +19,8 @@ describe("Smoke: Room Resources - Feature", function(){
             request.resource.postResource(resourceBody, function(err, res){
                 resource_ID = res.body._id;
                 generator.generator_resource.setPropertiesResource(resource_ID);
-                dbQuery.preCondition.findAllRooms(function(res){
-                    roomId = res[0]._id;
+                dbQuery.preCondition.getRandomRoom(function(res){
+                    roomId = res._id;
                     dbQuery.preCondition.findAllServices(function(res){
                         serviceId = res[0]._id;
                         done();
@@ -37,7 +37,13 @@ describe("Smoke: Room Resources - Feature", function(){
             done();
         });
     });
-
+    afterEach(function (done) {
+        if (roomResourceId !== undefined) {
+            dbQuery.removeResource(roomResourceId, function () {
+                done();
+            });
+        }
+    });
     it('GET /rooms/{:roomId}/resources/{:roomResourceId}, returns status code 200', function(done){
         request.resource.getResourceByRoomId(roomId, roomResourceId, function(err, res){
             expect(res.status).to.equal(config.statusCode.OK);

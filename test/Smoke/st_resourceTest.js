@@ -13,8 +13,8 @@ describe("Smoke: Resource test without preconditions", function () {
     this.timeout(config.timeOut);
     before(function (done) {
         request.authentication.postLogin(function (err, res) {
-            dbQuery.preCondition.findAllRooms(function (res) {
-                room_ID = res[0]._id;
+            dbQuery.preCondition.getRandomRoom(function (res) {
+                room_ID = res._id;
                 dbQuery.preCondition.findAllServices(function (res) {
                     serviceId = res[0]._id;
                     done();

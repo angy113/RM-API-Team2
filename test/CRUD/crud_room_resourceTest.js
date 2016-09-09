@@ -21,8 +21,8 @@ describe("CRUD - Room Resources Service", function () {
             resourceBody = generator.generator_resource.generateResource();
             dbQuery.preCondition.insertResource(resourceBody, function (res) {
                 roomResourceId = res._id;
-                dbQuery.preCondition.findAllRooms(function (res) {
-                    room_ID = res[0]._id;
+                dbQuery.preCondition.getRandomRoom(function (res) {
+                    room_ID = res._id;
                     done();
                 });
             });

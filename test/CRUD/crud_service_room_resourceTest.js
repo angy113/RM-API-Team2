@@ -23,8 +23,8 @@ describe("CRUD - Room Resources Service", function(){
                 resourceId = res._id;
                 dbQuery.preCondition.findAllServices(function(res){
                     serviceId = res[0]._id;
-                    dbQuery.preCondition.findAllRoomsOfOneService(serviceId, function(res){
-                        room_ID = res[0]._id;
+                    dbQuery.preCondition.getRandomRoom(function(res){
+                        room_ID = res._id;
                         done();
                     });
                 });
